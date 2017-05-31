@@ -223,6 +223,7 @@ public class Account
      */
     public ArrayList getFriendList()
     {
+        /*
         ArrayList newFriendList = new ArrayList();
         newFriendList.add(new Account());
         
@@ -245,6 +246,8 @@ public class Account
             newFriendList.set(position, key);
         }
         return newFriendList;
+        */
+        return friendList;
     }
     
     /**

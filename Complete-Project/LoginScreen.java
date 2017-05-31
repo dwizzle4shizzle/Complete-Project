@@ -188,6 +188,7 @@ public class LoginScreen
         if(testerAccount.checkAccount(username, password))//if the entered account exists
         {
             //log into main client
+            myAccount = new Account(username, password);
             sendAccount();
             //System.out.println("It worked!");
         }
