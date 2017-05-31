@@ -1,6 +1,4 @@
- 
 /**
-
  * Class Summary - The Main GUI for the Oyea Messenger
  * @author(Kevyn Higbee)
  * @version(0.01)
@@ -35,8 +33,7 @@ import javafx.scene.Group;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.Node;
 import javafx.scene.layout.Priority;
-
-@SuppressWarnings("restriction")
+import javafx.collections.ObservableList;
 public class OyeaGUI extends Application
 {
     private boolean DEBUG = true;  // this doesn't do anything right now
@@ -66,7 +63,10 @@ public class OyeaGUI extends Application
     private final int friendWindowPadding = 50;
     /** defualt size of conversation pane */
     private final int vpHeight = 555;
-    
+    /** port for the server */
+    private final int serverPort = 8080;
+    /** server name/address */
+    private final String serverName = "localhost";
     // objects being displayed
     /** pane holding all the other panes */
     private GridPane mainPane = new GridPane();
@@ -94,7 +94,10 @@ public class OyeaGUI extends Application
     private Stage mainStage;
     /** The signed in account */
     private Account signedInAccount;
-    
+    /** pane where chat is displayed */
+    private VBox vBox;
+    /** Chat client */
+    ChatClient client;
     /**
      * Constructor for OyeaGUI class
      * @param acc - the account that is signed in
@@ -102,6 +105,8 @@ public class OyeaGUI extends Application
     public OyeaGUI(Account acc)
     {
         signedInAccount = acc;
+        client = new ChatClient(serverName, serverPort , acc, this);
+        client.start();
         initializePanes();
     }
     public OyeaGUI()
@@ -162,6 +167,7 @@ public class OyeaGUI extends Application
         
         mainPane.add(leftPane,0,0);
         currentNode = friendRequestPane();
+        vBox = getVBox((GridPane)currentNode);
         mainPane.add(currentNode,1,0);
         
         scene = new Scene(mainPane, hRes, vRes, Color.DIMGREY);
@@ -190,6 +196,23 @@ public class OyeaGUI extends Application
         }
         
         return gPane;
+    }
+    /* returns the vbox with the text
+     * @return the vbox to put text on
+     */
+    private VBox getVBox(GridPane gridPane)
+    {
+        ScrollPane sPane = null;
+        VBox vb = null;
+        ObservableList<Node> childrens = gridPane.getChildren();
+        int row = 0, col = 1;
+        for(Node node : childrens)
+        {
+            if(gridPane.getRowIndex(node) == row && gridPane.getColumnIndex(node) == col)
+                sPane = (ScrollPane)node;  // get the node that is the vbox
+        }
+        vb = (VBox)sPane.getContent();
+        return vb;
     }
     // create a button with the accept or decline friend request options
     private GridPane acceptFriendRequest(Account friend)
@@ -267,7 +290,7 @@ public class OyeaGUI extends Application
     // creates the ScrollPane with every contact button
     private void initContactPane()
     {
-        //Name accName = new Name("");
+        Name accName = new Name("");
         contactPane = new ScrollPane();
         ArrayList<Account> cList = signedInAccount.getFriendList();
         VBox vb = new VBox();
@@ -313,7 +336,7 @@ public class OyeaGUI extends Application
         Label contName = new Label(name);
         tBox.setPrefRowCount(numRows);
         tBox.setPrefColumnCount(numCols);
-        
+        sPane.setContent(new VBox());
         gPane.setGridLinesVisible(DEBUG);
         for(Account tmp : list)
         {
@@ -374,7 +397,7 @@ public class OyeaGUI extends Application
             public void handle(ActionEvent event)
             {
                 mainStage.hide();
-                signedInAccount = null;
+                client.logOut();
                 Platform.exit();
                 System.exit(0);
             }
@@ -551,22 +574,26 @@ public class OyeaGUI extends Application
     
     private Message sendMessage(String str)
     {
-		Message msg = new Message(str, signedInAccount);
+        Message msg = new Message(str, signedInAccount);
         if(DEBUG)
             System.out.print(msg.getMsg() + " " + msg.getFrom().getName());
         return msg;
     }
     public void appendMessage(Message msg)
     {
-		String str = msg.getFrom().getName() + ": " + msg.getMsg();
-        
+        String str = msg.getFrom().getName() + ": " + msg.getMsg();
+        appendMessage(str, vBox);
     }
-    
-    public void appendMessage(String msg)
+    public void appendMessage(String str)
     {
-    	String str = msg;
+        String msg = str;
+        appendMessage(str, vBox);
     }
-    
+    private void appendMessage(String msg, VBox vBox)
+    {
+        Text txt = new Text(msg);
+        vBox.getChildren().add(txt);
+    }
     private void updateContactPane()
     {
         initContactPane();

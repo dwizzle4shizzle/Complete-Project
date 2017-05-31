@@ -58,7 +58,7 @@ public class ChatClient
      * 
      * @return  boolean true if successfully starts
      */
-    public boolean start() throws IOException
+    public boolean start()
     {
         MsgRefresher mRefresh = new MsgRefresher();
         
