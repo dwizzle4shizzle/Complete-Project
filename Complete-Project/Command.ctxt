@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=myType\ myContents
+comment0.target=Command(java.lang.String,\ java.lang.Object)
+comment0.text=\n\ @title\ Command\ Method\n\ @param\ myType\n\ @param\ myContents\n\ @desc\ Makes\ a\ new\ command\ with\ just\ the\ type\ and\ contents.\n
+comment1.params=myType\ myContents\ myRecip
+comment1.target=Command(java.lang.String,\ java.lang.Object,\ Account)
+comment1.text=\n\ @title\ Command\ Method\n\ @param\ myType\n\ @param\ myContents\n\ @param\ myRecip\n\ @desc\ Makes\ a\ new\ command\ with\ the\ type,\ contents,\ and\ recipient.\n
+comment2.params=
+comment2.target=java.lang.String\ getType()
+comment2.text=\n\ @title\ getType\ Method\n\ @return\ String\n\ @desc\ Returns\ the\ type\ of\ command.\n
+comment3.params=
+comment3.target=java.lang.Object\ getContents()
+comment3.text=\n\ @title\ getContents\ Method\n\ @return\ Object\n\ @desc\ Returns\ the\ contents\ of\ the\ command.\n
+comment4.params=
+comment4.target=Account\ getRecip()
+comment4.text=\n\ @title\ getRecip\ Method\n\ @return\ Account\n\ @desc\ Returns\ the\ recipient\ of\ the\ \n
+numComments=5

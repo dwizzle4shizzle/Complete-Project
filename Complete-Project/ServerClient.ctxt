@@ -1,0 +1,26 @@
+#BlueJ class context
+comment0.params=myUser\ myOs
+comment0.target=ServerClient(Account,\ java.io.ObjectOutputStream)
+comment0.text=\n\ @title\ ServerClient\ Constructor\n\ @param\ myUser\n\ @param\ myOs\n
+comment1.params=message\ rec
+comment1.target=void\ sendMessage(java.lang.String,\ Account)
+comment1.text=\n\ @title\ sendMessage\ Method\n\ @param\ message\n\ @param\ rec\n\ @desc\ Sends\ a\ message\ to\ the\ server\ for\ the\ account.\n
+comment2.params=
+comment2.target=void\ recieveMessage()
+comment2.text=\n\ @title\ recieveMessage\ Method\n\ @desc\ Pulls\ all\ of\ the\ messages\ for\ this\ client\ stored\ on\ the\ server.\n
+comment3.params=friendEmail
+comment3.target=void\ addFriend(java.lang.String)
+comment3.text=\n\ @title\ addFriend\ Method\n\ @param\ friend\n\ @throws\ IOException\ \n\ @desc\ Adds\ each\ of\ the\ accounts\ as\ friends.\n
+comment4.params=friend
+comment4.target=void\ removeFriend(Account)
+comment4.text=\n\ @title\ removeFriend\ Method\n\ @param\ friend\n\ @desc\ Removes\ each\ of\ the\ accounts\ from\ each\ other's\ friend\ lists.\n
+comment5.params=
+comment5.target=void\ findIndex()
+comment5.text=\n\ @title\ findIndex\ Method\n\ @desc\ Finds\ the\ index\ of\ this\ client\ on\ the\ Server's\ list.\n
+comment6.params=list
+comment6.target=void\ checkOnline(java.util.ArrayList)
+comment6.text=\n\ @title\ checkOnline\ Method\n\ @param\ list\n\ @throws\ IOException\n\ @desc\ Checks\ to\ see\ which\ friends\ are\ online,\ and\ updates\ the\ friend\ list.\n
+comment7.params=myCommand
+comment7.target=void\ executeCommand(Command)
+comment7.text=\n\ @title\ executeCommand\ Method\n\ @param\ myCommand\n\ @throws\ IOException\n\ @desc\ Pulls\ the\ command,\ and\ processes\ it.\n
+numComments=8

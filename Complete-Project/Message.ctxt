@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.params=myMsg\ myFrom
+comment0.target=Message(java.lang.String,\ Account)
+comment0.text=\n\ @title\ Message\ Method\n\ @param\ myMsg\n\ @param\ myFrom\n\ @desc\ Creates\ a\ method\ with\ the\ message\ and\ the\ account\ that\ it's\ from.\n
+comment1.params=
+comment1.target=java.lang.String\ getMsg()
+comment1.text=\n\ @title\ getMsg\ Method\n\ @return\ String\n\ @desc\ Returns\ the\ message.\n
+comment2.params=
+comment2.target=Account\ getFrom()
+comment2.text=\n\ @title\ getFrom\ Method\n\ @return\ Account\n\ @desc\ Returns\ the\ account\ that\ the\ message\ is\ from.\n
+numComments=3
